@@ -1,0 +1,25 @@
+{
+  "name": "sistema-mondo",
+  "version": "1.0.0",
+  "description": "",
+  "homepage": "https://github.com/WilliamDemes/sistema-mondo#readme",
+  "bugs": {
+    "url": "https://github.com/WilliamDemes/sistema-mondo/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/WilliamDemes/sistema-mondo.git"
+  },
+  "license": "MIT",
+  "author": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev"
+  },
+  "dependencies": {
+    "next": "^16.1.6",
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}
