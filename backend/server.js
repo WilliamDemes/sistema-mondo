@@ -46,6 +46,41 @@ app.post('/api/login', async (req, res) => {
   }
 });
 
+// --- NOVAS ROTAS PARA AS FAMÍLIAS DO INSTITUTO MONDÓ ---
+
+// 1. Rota para CADASTRAR uma nova família (Guarda na despensa)
+app.post('/api/familias', async (req, res) => {
+  const { nomeResponsavel, cpf, endereco, telefone } = req.body;
+
+  try {
+    const novaFamilia = await prisma.familia.create({
+      data: {
+        nomeResponsavel: nomeResponsavel,
+        cpf: cpf,
+        endereco: endereco,
+        telefone: telefone
+      }
+    });
+    console.log('Nova família cadastrada:', novaFamilia.nomeResponsavel);
+    return res.json({ sucesso: true, mensagem: 'Família cadastrada com sucesso!' });
+  } catch (erro) {
+    console.error('Erro ao cadastrar família:', erro);
+    return res.status(500).json({ sucesso: false, mensagem: 'Erro ao salvar a família no banco de dados.' });
+  }
+});
+
+// 2. Rota para LISTAR as famílias (Busca na despensa para mostrar na tela)
+app.get('/api/familias', async (req, res) => {
+  try {
+    // O comando findMany() pega todos os registros daquela tabela
+    const listaDeFamilias = await prisma.familia.findMany(); 
+    return res.json(listaDeFamilias);
+  } catch (erro) {
+    console.error('Erro ao buscar famílias:', erro);
+    return res.status(500).json({ sucesso: false, mensagem: 'Erro ao buscar as famílias.' });
+  }
+});
+
 const PORTA = 5000;
 app.listen(PORTA, () => {
   console.log(`Servidor rodando perfeitamente na porta ${PORTA}`);

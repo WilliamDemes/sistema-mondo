@@ -19,3 +19,27 @@ model Usuario {
   senha     String
   criadoEm  DateTime @default(now())
 }
+
+model Familia {
+  id              Int      @id @default(autoincrement())
+  nomeResponsavel String
+  cpf             String?  @unique // A interrogação significa que é opcional
+  endereco        String?
+  telefone        String?
+  criadoEm        DateTime @default(now())
+  
+  // Relação: Uma família pode participar de várias ações
+  acoes           Acao[]   
+}
+
+// Tabela para registrar as atividades/projetos
+model Acao {
+  id          Int       @id @default(autoincrement())
+  nome        String    // Ex: "Oficina de Leitura", "Ação de Saúde"
+  descricao   String?
+  dataDaAcao  DateTime?
+  criadoEm    DateTime  @default(now())
+  
+  // Relação: Uma ação pode ter várias famílias participando
+  familias    Familia[] 
+}
