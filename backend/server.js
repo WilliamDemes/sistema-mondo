@@ -81,6 +81,40 @@ app.get('/api/familias', async (req, res) => {
   }
 });
 
+// --- NOVAS ROTAS PARA AS AÇÕES (ATIVIDADES DO INSTITUTO) ---
+
+// 1. Rota para CADASTRAR uma nova ação
+app.post('/api/acoes', async (req, res) => {
+  const { nome, descricao, dataDaAcao } = req.body;
+
+  try {
+    const novaAcao = await prisma.acao.create({
+      data: {
+        nome: nome,
+        descricao: descricao,
+        // O Prisma precisa que a data seja um formato específico, então convertemos aqui
+        dataDaAcao: dataDaAcao ? new Date(dataDaAcao) : null 
+      }
+    });
+    console.log('Nova ação cadastrada:', novaAcao.nome);
+    return res.json({ sucesso: true, mensagem: 'Ação cadastrada com sucesso!' });
+  } catch (erro) {
+    console.error('Erro ao cadastrar ação:', erro);
+    return res.status(500).json({ sucesso: false, mensagem: 'Erro ao salvar a ação no banco de dados.' });
+  }
+});
+
+// 2. Rota para LISTAR as ações cadastradas
+app.get('/api/acoes', async (req, res) => {
+  try {
+    const listaDeAcoes = await prisma.acao.findMany(); 
+    return res.json(listaDeAcoes);
+  } catch (erro) {
+    console.error('Erro ao buscar ações:', erro);
+    return res.status(500).json({ sucesso: false, mensagem: 'Erro ao buscar as ações.' });
+  }
+});
+
 const PORTA = 5000;
 app.listen(PORTA, () => {
   console.log(`Servidor rodando perfeitamente na porta ${PORTA}`);
