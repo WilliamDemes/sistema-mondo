@@ -1,65 +1,209 @@
-/* Login.module.css */
+/* Login.module.css - Mesma pasta do index.jsx */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
 .container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
   justify-content: center;
-  height: 100vh;
-  font-family: sans-serif;
-  background-color: #f4f4f9;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #fcfcfc; /* Fundo muito claro (60%) */
+  font-family: 'Inter', sans-serif;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Formas geométricas decorativas de fundo */
+.bg_pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none; /* Deixa os cliques passarem */
+}
+
+.bg_shape {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bg_shape_1 {
+  width: 300px;
+  height: 300px;
+  background-color: rgba(248, 228, 204, 0.4); /* #f8e4cc com transparência */
+  top: -100px;
+  right: -100px;
+}
+
+.bg_shape_2 {
+  width: 200px;
+  height: 200px;
+  background-color: rgba(210, 74, 32, 0.1); /* #d24a20 com transparência */
+  bottom: 100px;
+  left: 10%;
+}
+
+.bg_shape_3 {
+  width: 150px;
+  height: 150px;
+  background-color: rgba(59, 114, 47, 0.1); /* #3b722f com transparência */
+  top: 40%;
+  right: 15%;
 }
 
 .card {
+  background-color: #ffffff;
   padding: 40px;
-  background-color: white;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  min-width: 320px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  width: 100%;
+  max-width: 420px;
+  z-index: 1; /* Fica acima do fundo decorativo */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.logo_container {
+  text-align: center;
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo Simulado por Design (divs geométricas) */
+.geometric_logo {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 2px;
+  width: 100px;
+  height: 50px;
+  margin-bottom: 20px;
+}
+
+.geometric_logo div {
+  width: 100%;
+  height: 100%;
+  border-radius: 4px; /* Cantos levemente arredondados */
 }
 
 .title {
-  color: #333;
-  text-align: center;
-  margin-bottom: px;
+  color: #491b02; /* Marrom escuro da paleta */
+  font-size: 24px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  letter-spacing: 1px;
 }
 
 .subtitle {
-  color: #666;
-  text-align: center;
-  margin-bottom: 30px;
+  color: rgba(73, 27, 2, 0.7); /* Marrom escuro com leve transparência (30%) */
+  font-size: 14px;
+  margin: 0;
 }
 
 .form {
+  width: 100%;
+  margin-bottom: 25px;
   display: flex;
   flex-direction: column;
+  align-items: center; /* Centraliza os itens no eixo cruzado */;
 }
 
-.label {
-  margin-bottom: 8px;
-  font-weight: bold;
-  color: #444;
+/* Grupo do input para encapsular o ícone */
+.input_group {
+  position: relative;
+  margin-bottom: 15px;
+  width: 100%;
+  box-sizing: border-box; /* Garante que o grupo também respeite os limites */;
+}
+
+.input_icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #491b02; /* Marrom escuro */
+  opacity: 0.6;
 }
 
 .input {
-  margin-bottom: 20px;
-  padding: 12px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
+  width: 100%;
+  padding: 15px 15px 15px 45px; /* Espaço para o ícone */
+  box-sizing: border-box; /* ADICIONE ESTA LINHA */
+  border: 1px solid rgba(73, 27, 2, 0.1);
+  border-radius: 8px;
   font-size: 14px;
+  color: #491b02;
+  background-color: #fbfbfb;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+  outline: none;
+  border-color: #009999; /* Cor teal de ação ao focar */
+  box-shadow: 0 0 0 3px rgba(0, 153, 153, 0.1);
+}
+
+.input::placeholder {
+  color: rgba(73, 27, 2, 0.5); /* Placeholder suave */
 }
 
 .button {
-  padding: 14px;
-  background-color: #0056b3;
-  color: white;
+  width: 100%;
+  padding: 15px;
+  box-sizing: border-box;
   border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: bold;
+  border-radius: 8px;
+  background-color: #009999; /* Cor teal de ação principal (10%) */
+  color: #ffffff;
   font-size: 16px;
-  transition: background-color 0.3s ease;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.1s;
+  letter-spacing: 1px;
 }
 
 .button:hover {
-  background-color: #004494; /* Tom de azul mais escuro no hover */
+  background-color: #008080; /* Um tom mais escuro de teal no hover */
+}
+
+.button:active {
+  transform: scale(0.98); /* Efeito de clique */
+}
+
+.footer_links {
+  text-align: center;
+  font-size: 13px;
+  margin-bottom: 30px;
+}
+
+.link {
+  color: #491b02;
+  text-decoration: none;
+  margin: 0 10px;
+  opacity: 0.8;
+  transition: opacity 0.2s;
+}
+
+.link:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+/* Barra de acento de cores no rodapé do card */
+.color_accent_bar {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: auto; /* Empurra para o final do card */
+  width: 100%;
+}
+
+.color_dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
 }

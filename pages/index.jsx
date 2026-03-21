@@ -1,17 +1,18 @@
 import { useState } from 'react';
-// 1. Importamos o arquivo CSS que acabamos de criar, chamando-o de "styles"
+// Importamos o arquivo CSS na mesma pasta, chamando-o de "styles"
 import styles from './Login.module.css'; 
+import { Mail, Lock } from 'lucide-react'; // Importando ícones (necessário rodar: npm install lucide-react)
 
 export default function Login() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
 
-  // Colocamos o "async" aqui porque a comunicação com o servidor leva alguns milissegundos
+  // Mantemos a sua lógica async intacta
   const handleLogin = async (e) => {
     e.preventDefault();
     
     try {
-      // O fetch vai até o backend na porta 5000 e entrega os dados no formato JSON
+      // O fetch vai até o backend na sua URL de produção do Codespaces
       const resposta = await fetch('https://stunning-engine-4jw796g46jqg2jxvw-5000.app.github.dev/api/login', {
         method: 'POST',
         headers: {
@@ -20,11 +21,12 @@ export default function Login() {
         body: JSON.stringify({ email, senha }), // Transforma as variáveis em texto para enviar
       });
 
-      // Aqui recebemos a resposta que o Node.js nos enviou de volta
+      // Recebemos a resposta
       const dados = await resposta.json();
 
       if (dados.sucesso) {
-        alert(dados.mensagem); // Mostra a mensagem de sucesso vinda do servidor!
+        alert(dados.mensagem); // Mensagem de sucesso!
+        // Aqui você pode redirecionar para o painel de operações depois
       } else {
         alert('Erro: ' + dados.mensagem);
       }
@@ -36,37 +38,79 @@ export default function Login() {
   };
 
   return (
-    // 2. Usamos className={styles.nomeDaClasse} em vez de style={{...}}
+    // Componente principal com classe global do arquivo CSS
     <div className={styles.container}>
+      
+      {/* Formas geométricas decorativas de fundo (para o visual moderno) */}
+      <div className={styles.bg_pattern}>
+        <div className={`${styles.bg_shape} ${styles.bg_shape_1}`}></div>
+        <div className={`${styles.bg_shape} ${styles.bg_shape_2}`}></div>
+        <div className={`${styles.bg_shape} ${styles.bg_shape_3}`}></div>
+      </div>
+
+      {/* Card central de login */}
       <div className={styles.card}>
-        <h1 className={styles.title}>Instituto Mondó</h1>
-        <h2 className={styles.subtitle}>Acesso ao Sistema</h2>
+        <div className={styles.logo_container}>
+          {/* Logo simulado por divs para o design (depois você troca por <img />) */}
+          <div className={styles.geometric_logo}>
+            <div style={{ backgroundColor: '#ff9933' }}></div>
+            <div style={{ backgroundColor: '#009999' }}></div>
+            <div style={{ backgroundColor: '#ff9999' }}></div>
+            <div style={{ backgroundColor: '#491b02' }}></div>
+            <div style={{ backgroundColor: '#d24a20' }}></div>
+            <div style={{ backgroundColor: '#3b722f' }}></div>
+            <div style={{ backgroundColor: '#c0272d' }}></div>
+            <div style={{ backgroundColor: '#ffffff', opacity: 0.8 }}></div>
+          </div>
+          <h1 className={styles.title}>INSTITUTO MONDÓ</h1>
+          <p className={styles.subtitle}>Acesse o Portal de Operações</p>
+        </div>
         
         <form onSubmit={handleLogin} className={styles.form}>
-          <label className={styles.label}>E-mail da Equipe:</label>
-          <input
-            type="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            className={styles.input}
-            placeholder="nome@institutomondo.org"
-          />
+          {/* Grupo do input de e-mail com ícone integrado */}
+          <div className={styles.input_group}>
+            <Mail className={styles.input_icon} size={20} />
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              className={styles.input}
+              placeholder="nome@institutomondo.org" // Placeholder moderno
+            />
+          </div>
 
-          <label className={styles.label}>Senha:</label>
-          <input
-            type="password"
-            required
-            value={senha}
-            onChange={(e) => setSenha(e.target.value)}
-            className={styles.input}
-            placeholder="Sua senha segura"
-          />
+          {/* Grupo do input de senha com ícone integrado */}
+          <div className={styles.input_group}>
+            <Lock className={styles.input_icon} size={20} />
+            <input
+              type="password"
+              required
+              value={senha}
+              onChange={(e) => setSenha(e.target.value)}
+              className={styles.input}
+              placeholder="Sua senha segura" // Placeholder moderno
+            />
+          </div>
 
           <button type="submit" className={styles.button}>
             Entrar no Sistema
           </button>
         </form>
+
+        <div className={styles.footer_links}>
+          <a href="#" className={styles.link}>Esqueci minha senha</a>
+          <a href="#" className={styles.link}>Criar nova conta</a>
+        </div>
+
+        {/* Barra de cores da paleta do Instituto (no rodapé do card) */}
+        <div className={styles.color_accent_bar}>
+          <div className={styles.color_dot} style={{ backgroundColor: '#ff9933' }}></div>
+          <div className={styles.color_dot} style={{ backgroundColor: '#ff9999' }}></div>
+          <div className={styles.color_dot} style={{ backgroundColor: '#d24a20' }}></div>
+          <div className={styles.color_dot} style={{ backgroundColor: '#3b722f' }}></div>
+          <div className={styles.color_dot} style={{ backgroundColor: '#c0272d' }}></div>
+        </div>
       </div>
     </div>
   );

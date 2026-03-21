@@ -1,0 +1,214 @@
+/* pages/Familias.module.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background-color: #f8fafc; /* Fundo muito claro e limpo */
+  font-family: 'Inter', sans-serif;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+.header {
+  margin-bottom: 40px;
+  text-align: center;
+  width: 100%;
+  max-width: 800px;
+}
+
+.title {
+  color: #491b02; /* Marrom escuro da paleta do Instituto */
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+/* CARD DO FORMULÁRIO: Design moderno e flutuante */
+.form_card {
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* Sombra suave */
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 60px; /* Mais espaço para separar o formulário da lista */
+  box-sizing: border-box;
+}
+
+.card_subtitle {
+  color: #491b02; /* Marrom escuro */
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+  letter-spacing: 0.5px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px; /* Mantemos o gap entre os grupos de input */
+}
+
+/* Grupo de Input: Ícone integrado ao campo */
+.input_group {
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input_icon {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #491b02; /* Marrom escuro */
+  opacity: 0.6; /* Leve transparência no ícone */
+}
+
+.input_field {
+  width: 100%;
+  padding: 15px 15px 15px 45px; /* Espaço para o ícone na esquerda */
+  font-size: 14px;
+  color: #491b02;
+  background-color: #fbfbfb; /* Fundo de input suave */
+  border: 1px solid rgba(73, 27, 2, 0.1); /* Borda marrom muito suave */
+  border-radius: 8px;
+  box-sizing: border-box;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input_field:focus {
+  outline: none;
+  border-color: #009999; /* Cor teal de ação ao focar */
+  box-shadow: 0 0 0 3px rgba(0, 153, 153, 0.1);
+}
+
+.input_field::placeholder {
+  color: rgba(73, 27, 2, 0.5); /* Placeholder suave */
+}
+
+/* BOTÃO PRINCIPAL: Cor Teal (#009999) */
+.primary_button {
+  width: 100%;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  background-color: #009999; /* Teal de ação principal */
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 1px;
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.primary_button:hover {
+  background-color: #008080; /* Um tom mais escuro de teal no hover */
+}
+
+.primary_button:active {
+  transform: scale(0.98); /* Efeito de clique */
+}
+
+.status_mensagem {
+  color: #009999; /* Usando Teal para mensagem de sucesso minimalista */
+  font-weight: 600;
+  text-align: center;
+  margin-top: 15px;
+}
+
+/* SEÇÃO DA LISTA DE FAMÍLIAS */
+.list_section {
+  width: 100%;
+  max-width: 800px;
+}
+
+.section_subtitle {
+  color: #491b02; /* Marrom escuro */
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 25px 0;
+  letter-spacing: 0.5px;
+}
+
+.list_grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Lista de uma coluna para minimalismo */
+  gap: 15px;
+}
+
+.family_card {
+  background: #ffffff;
+  padding: 20px;
+  border-radius: 8px;
+  border: 1px solid rgba(73, 27, 2, 0.05); /* Borda marrom quase invisível */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.02); /* Sombra ultra suave */
+  transition: transform 0.2s;
+}
+
+.family_card:hover {
+  transform: translateY(-2px); /* Efeito de hover suave */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.04);
+}
+
+.family_name {
+  color: #491b02; /* Marrom escuro */
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.family_details, .family_address {
+  color: rgba(73, 27, 2, 0.7); /* Marrom escuro com leve transparência */
+  font-size: 13px;
+  margin-top: 5px;
+  display: inline-block; /* Alinha CPF/Tel na mesma linha suave */
+}
+
+.no_data_text {
+  color: rgba(73, 27, 2, 0.6);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Formas geométricas decorativas de fundo */
+.bg_pattern {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none; /* Deixa os cliques passarem */
+}
+
+.bg_shape {
+  position: absolute;
+  border-radius: 50%;
+}
+
+.bg_shape_1 {
+  width: 300px;
+  height: 300px;
+  background-color: rgba(248, 228, 204, 0.4); /* #f8e4cc com transparência */
+  top: -100px;
+  right: -100px;
+}
+
+.bg_shape_2 {
+  width: 200px;
+  height: 200px;
+  background-color: rgba(210, 74, 32, 0.1); /* #d24a20 com transparência */
+  bottom: 100px;
+  left: 10%;
+}
+
+.bg_shape_3 {
+  width: 150px;
+  height: 150px;
+  background-color: rgba(59, 114, 47, 0.1); /* #3b722f com transparência */
+  top: 40%;
+  right: 15%;
+}
